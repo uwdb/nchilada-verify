@@ -1,0 +1,27 @@
+import org.gradle.plugins.ide.eclipse.model.SourceFolder
+apply plugin: "java"
+apply plugin: "eclipse"
+
+archivesBaseName = "nchilada"
+group = "edu.washington.db.nchilada"
+version = "0.1"
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+  mavenCentral() /* The standard Java Maven repository. */
+}
+
+dependencies {
+  compile "org.apache.hadoop:hadoop-core:1.1.2"
+}
+
+tasks.withType(Compile) {
+  /* Tell Java to emit all compiler warnings. */
+  options.compilerArgs << "-Xlint"
+}
